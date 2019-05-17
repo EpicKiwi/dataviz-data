@@ -23,6 +23,16 @@
           "type": "string"
         },
 
+        "primaryField": {
+          "description": "Unique identifier of the primary field of dataset.fields to be displayed",
+          "type": "string"
+        },
+
+        "secondaryField": {
+          "description": "Unique identifier of the secondary field of dataset.fields to be displayed",
+          "type": "string"
+        },
+
         "fields": {
           "description": "Definition of all possible fields in the dataset data points",
           "type": "array",
@@ -52,7 +62,7 @@
         }
       },
 
-      "required": ["name"]
+      "required": ["name","primaryField"]
     },
 
     "data": {
