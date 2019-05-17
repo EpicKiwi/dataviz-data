@@ -1,7 +1,7 @@
 {
   "name": "dataviz-data",
   "version": "1.0.0",
-  "description": "Set of scripts collecting and converting data from OpenData sources"
+  "description": "Set of scripts collecting and converting data from OpenData sources",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
