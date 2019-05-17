@@ -3,5 +3,109 @@
   "$id": "https://raw.githubusercontent.com/EpicKiwi/dataviz-data/master/datasetSchema.json",
   "title": "Dataset",
   "description": "A time-based dataset compatible with VR data viewer",
-  "type": "object"
+  "type": "object",
+
+  "properties": {
+
+    "dataset": {
+      "description": "Description of the whole dataset and definition of fields",
+      "type": "object",
+
+      "properties": {
+
+        "name": {
+          "description": "Displayable name of the dataset",
+          "type": "string"
+        },
+
+        "description": {
+          "description": "Displayable description of the dataset",
+          "type": "string"
+        },
+
+        "fields": {
+          "description": "Definition of all possible fields in the dataset data points",
+          "type": "array",
+
+          "items": {
+            "description": "Definition of a possible field in the dataset points",
+            "type": "object",
+
+            "properties": {
+              "id": {
+                "description": "Unique identifier of the field",
+                "type": "string"
+              },
+              "displayname": {
+                "description": "A displayable name of this field",
+                "type": "string"
+              },
+              "type": {
+                "description": "Type of data in this field for future casting",
+                "type": "string",
+                "enum": ["string","number"]
+              }
+            },
+
+            "required": ["id","type"]
+          }
+        }
+      },
+
+      "required": ["name"]
+    },
+
+    "data": {
+      "description": "Actual data of the dataset",
+      "type":"array",
+
+      "items": {
+        "description": "A point of data on map",
+        "type": "object",
+
+        "properties": {
+          "point": {
+            "description": "Longitude and Latitude of the point with RGF93 projection",
+            "type": "array",
+
+            "items": [{
+              "description": "Longitude in RGF93 projection",
+              "type": "number"
+            },{
+              "description": "Latitude in RGF93 projection",
+              "type": "number"
+            }],
+
+            "minItems": 2,
+            "maxItems": 2
+          },
+
+          "fields": {
+            "description": "Values of all defined fields in dataset.fields",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "A value of a defined field in dataset.fields of this point",
+
+              "properties": {
+                "id": {
+                  "description": "Unique identifier of the field",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "String formatted value according to type of field definition",
+                  "type": "string"
+                }
+              },
+              "required": ["id","value"]
+            }
+          }
+        },
+        "required": ["fields","point"]
+      }
+    }
+
+  },
+
+  "required": ["dataset","data"]
 }

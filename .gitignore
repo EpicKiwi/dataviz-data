@@ -2,7 +2,7 @@
 data.json
 
 # Output data
-pollution/pollution.json
+*/converted-data.json
 
 # IDEA
 .idea
