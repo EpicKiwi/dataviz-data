@@ -90,28 +90,47 @@
             "maxItems": 2
           },
 
-          "fields": {
-            "description": "Values of all defined fields in dataset.fields",
+          "values": {
+            "description": "Values of this point over time",
             "type": "array",
             "items": {
               "type": "object",
-              "description": "A value of a defined field in dataset.fields of this point",
-
+              "description": "A value of a point in time",
               "properties": {
-                "id": {
-                  "description": "Unique identifier of the field",
-                  "type": "string"
+
+                "timestamp": {
+                  "description": "Number of milliseconds since Unix epoch",
+                  "type": "number"
                 },
-                "value": {
-                  "description": "String formatted value according to type of field definition",
-                  "type": "string"
+
+                "fields": {
+                  "description": "Values of all defined fields in dataset.fields",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "description": "A value of a defined field in dataset.fields of this point",
+
+                    "properties": {
+                      "id": {
+                        "description": "Unique identifier of the field",
+                        "type": "string"
+                      },
+                      "value": {
+                        "description": "String formatted value according to type of field definition",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["id","value"]
+                  }
                 }
+
               },
-              "required": ["id","value"]
+
+              "required": ["fields","timestamp"]
             }
           }
         },
-        "required": ["fields","point"]
+        "required": ["values","point"]
       }
     }
 
